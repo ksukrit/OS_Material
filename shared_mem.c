@@ -19,7 +19,7 @@ int main(void){
 
 	if(fork() == 0){
 		// child proc
-		sleep(5);
+		//sleep(5);
 		if( (shmid = shmget(2041,32,0) ) == -1){
 			perror("Error in shmget\n");
 			exit(1);
@@ -36,6 +36,7 @@ int main(void){
 		}
 		putchar('\n');
 	}else {
+		//wait(NULL);
 		if( (shmid = shmget(2041,32,0666 | IPC_CREAT))== -1){
 			perror("Error in shmget\n");
 			exit(1);
