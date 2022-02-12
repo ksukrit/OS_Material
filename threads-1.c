@@ -25,8 +25,13 @@ int main(int argc, char *argv[]){
 			printf("Error in making thread %d\n",rc);
 			exit(1);
 		}
-		pthread_join(threads[t],NULL); // Required to maintain async execution
+		//pthread_join(threads[t],NULL); // Required to maintain async execution
 	}
+
+	for(t = 0; t < NUM_THREADS; t++ ){
+		pthread_join(threads[t],NULL);
+	}
+	
 	pthread_exit(NULL);
 	return 0;
 }
