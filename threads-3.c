@@ -31,14 +31,14 @@ int main(int argc, char *argv[]){
 	long int last = atoi(argv[2]);
 	printf("Last %ld \n", last);
 	int i;
-
-	my_struct struct1[t_c];
 	
 	for(i = 0; i <(t_c); i++){
-		struct1[i].begin = (last/t_c)*i +1;
-		struct1[i].end = ((last/t_c)*(i+1));
+		my_struct * s = malloc(sizeof(my_struct));
+
+		s->begin = (last/t_c)*i +1;
+		s->end = ((last/t_c)*(i+1));
 		
-		if(pthread_create(&threads[i],NULL,func, (void *)&struct1[i])){
+		if(pthread_create(&threads[i],NULL,func, s)){
 			// Error happened.
 			printf("Error making thread %d \n", i);
 			exit(1);
