@@ -8,7 +8,7 @@ sem_t sem;
 int counter;
 
 void* handler(void* ptr){
-  int x = *((int*)ptr);
+  int x = (int) ptr;
   printf("Thread %d: waiting to enter the critical section...\n",x);
   sem_wait(&sem);
   //critical section
@@ -28,8 +28,8 @@ int main(){
   pthread_t  thread_a, thread_b;
 
   sem_init(&sem,0,1);//1 initial value.
-  pthread_create(&thread_a, NULL, (void *)&handler, (void*)&i[0]);
-  pthread_create(&thread_b, NULL, (void *)&handler, (void*)&i[1]);
+  pthread_create(&thread_a, NULL, (void *)&handler, (void*)i[0]);
+  pthread_create(&thread_b, NULL, (void *)&handler, (void*)i[1]);
 
   pthread_join(thread_a,NULL);
   pthread_join(thread_b,NULL);
